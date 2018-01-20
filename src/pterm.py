@@ -2,27 +2,65 @@
 Implementation of a terminal in Pyhon
 """
 
+from commands import exit as f_exit
+from commands import placeholder as f_placeholder
+
 class PTerm:
 	
 
 	def __init__(self):
 		self.__seguir=True
 		self.__prompt="> "
+		self.__debug=True
 
 	def printPrompt(self):
 		print self.__prompt
+		
+	def getSeguir(self):
+		return self.__seguir
+    
+	def setSeguir(self, value):
+		if type(value) is bool:
+			self.__seguir=value
+		else:
+			print "Value specified is not a bool."
 	
+	"""Dado un comando devuelve dos listas.
+	com es una lista con un solo elemento que contiene el comando.
+	args es una lista que contiene 0 o mas argumentos para el comando.
+	REQUIERE QUE com Y args ESTEN VACIAS CUANDO SE PASAN POR PARMETRO"""
+	def parseComando(self,rawCom, com, args):
+		"""
+		Get commands and args
+		"""
+		allList = rawCom.split()
+		com.append(allList.pop(0))
+		#https://stackoverflow.com/questions/986006/how-do-i-pass-a-variable-by-reference
+		#NO SE PUEDE HACER ESTO.
+		#CAMBIA LA REFERENCIA DEL OBJETO POR
+		#LO QUE NO CAMBIARA SU VALOR FUERA DE LA FUNCION
+		#args = allList
+		args.extend(allList)
+
 	"""Execute a given command if it is implemented"""
-	def evaluarComando(self, com):
+	def evaluarComando(self, rawCom):
+		"""Parsear comando: separar orden de los argumentos"""
+		command = list()
+		args = list()
+		self.parseComando(rawCom,command,args)
+		if self.__debug:
+			print "command: " + str(command)
+			print "args: " + str(args)
+
 		"""Use of dictionary (or associative array) as a 
 		substitute for the swithc-case statement"""
 		dictionary = {
-			"exit": self.com_exit,
-			"ls": self.com_placeholder,
+			"exit": f_exit.com_exit,
+			"ls": f_placeholder.com_placeholder,
 		}
 		
 		try:		
-			dictionary[com]()
+			dictionary[command[0]](self,args)
 		except KeyError:
 			print com + ": Command not found."
 	
@@ -46,9 +84,7 @@ class PTerm:
 	#----COMMANDS-IMPLEMENTATION------------------
 	#---------------------------------------------
 
-	def com_exit(self):
-		self.__seguir=False
-
+	#Moved to commands package
 	def com_placeholder(self):
 		print "ima placholder"
 	
