@@ -2,6 +2,8 @@
 Implementation of a terminal in Pyhon
 """
 
+import os
+
 from commands import exit as f_exit
 from commands import placeholder as f_placeholder
 
@@ -44,25 +46,27 @@ class PTerm:
 
 	"""Execute a given command if it is implemented"""
 	def evaluarComando(self, rawCom):
-		"""Parsear comando: separar orden de los argumentos"""
-		command = list()
-		args = list()
-		self.parseComando(rawCom,command,args)
-		if self.__debug:
-			print "command: " + str(command)
-			print "args: " + str(args)
+		"""Solo evaluamos el comando si es una cadena no vacia"""
+		if len(rawCom)>0: 
+			"""Parsear comando: separar orden de los argumentos"""
+			command = list()
+			args = list()
+			self.parseComando(rawCom,command,args)
+			if self.__debug:
+				print "command: " + str(command)
+				print "args: " + str(args)
 
-		"""Use of dictionary (or associative array) as a 
-		substitute for the swithc-case statement"""
-		dictionary = {
-			"exit": f_exit.com_exit,
-			"ls": f_placeholder.com_placeholder,
-		}
-		
-		try:		
-			dictionary[command[0]](self,args)
-		except KeyError:
-			print com + ": Command not found."
+			"""Use of dictionary (or associative array) as a 
+			substitute for the swithc-case statement"""
+			dictionary = {
+				"exit": f_exit.com_exit,
+				"ls": f_placeholder.com_placeholder,
+			}
+			
+			try:		
+				dictionary[command[0]](self,args)
+			except KeyError:
+				print command[0] + ": Command not found."
 	
 	"""Main loop of the terminal, asks for a command and executes it."""
 	def mainLoop(self):
@@ -72,7 +76,7 @@ class PTerm:
 				comando=raw_input(self.__prompt)
 			except (KeyboardInterrupt, EOFError) as error:
 				print "Execution interrupted by User"
-				exit()
+				os._exit(0)
 
 			self.evaluarComando(comando)
 
@@ -83,13 +87,8 @@ class PTerm:
 	#---------------------------------------------
 	#----COMMANDS-IMPLEMENTATION------------------
 	#---------------------------------------------
-
 	#Moved to commands package
-	def com_placeholder(self):
-		print "ima placholder"
 	
-
-
 
 if __name__ == "__main__":
 	t = PTerm()
