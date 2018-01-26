@@ -1,0 +1,7 @@
+#!/bin/bash
+echo $1
+bash -c ls
+bash -i
+PS1=test
+echo $PS1
+ls

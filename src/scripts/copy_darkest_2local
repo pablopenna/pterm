@@ -1,0 +1,3 @@
+#!/bin/sh
+cp -r /home/propietario/.local/share/Steam/userdata/115540582/262060/remote/profile_* /home/propietario/.local/share/Red\ Hook\ Studios/Darkest
+

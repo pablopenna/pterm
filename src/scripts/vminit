@@ -1,0 +1,9 @@
+#!/bin/sh
+sudo -v
+#sudo vmplayer /home/propietario/Documentos/VM_Images/PC-RECEPTOR/PC-RECEPTOR.vmx &
+#sudo vmplayer /home/propietario/Documentos/VM_Images/PC-EMISOR/PC-EMISOR.vmx &
+
+sudo vmplayer /home/propietario/Documentos/VM_Images/flask_ubuntu/vm/Maq\ virtual.vmx &
+notify-send "VM initialized"
+sleep 60
+ssh lab@172.16.199.128

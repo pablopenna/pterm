@@ -1,0 +1,9 @@
+#!/bin/sh
+TIEMPO=$(expr 60 \* $1)
+echo "arg1 = $1"
+echo "tiempo = $TIEMPO"
+date +'%H:%M:%S'
+echo "Se va a dormir $1 min"
+sleep $TIEMPO
+date +'%H:%M:%S'
+notify-send "Han pasado $1 min"
