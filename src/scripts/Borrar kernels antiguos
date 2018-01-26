@@ -1,0 +1,12 @@
+sudo dpkg -l | grep linux-image
+
+Este comando devuelve la lista de los núcleos instalados, que en mi caso eran bastante para la rama 3.2.0-X, por lo que decidí eliminar todos los paquetes de esta rama y así evitar nuevas actualizaciones que no utilizaría. Para realizar esta acción utilice el comando:
+
+
+sudo apt-get remove --purge linux-image-X.X.X-X
+
+Ejemplo:
+
+sudo apt-get remove --purge linux-image-3.2.0-29-generic
+
+MUY IMPORTATNE NO BORRAR LAS ÚLTIMAS, SOBRE TODO LA "GENERIC" ( A SECAS). SE RECOMIENDA BORRAR SOSLO LAS PRIMERAS Y DEJAR ALGUNAS DE LAS ÚLTIMAS ADEMÁS DE LA GENERIC.

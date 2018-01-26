@@ -1,0 +1,7 @@
+#ejecutar los siguientes comandos desde la consola de un ubuntu livecd/usb
+sudo -i
+fdisk -l #(para saber que particion es la que tiene ubuntu instalado, p.ej: /dev/sda6)
+mount /dev/sda6 /mnt #(sustituir /dev/sda6 por la particion en la que se tenga instalado ubuntu)
+grub-install --root-directory=/mnt/ /dev/sda
+umount /mnt/
+exit

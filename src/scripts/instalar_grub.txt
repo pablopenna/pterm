@@ -1,0 +1,10 @@
+#supongo que en /dev/sda1 esta el OS que queremos que detecte el grub2
+sudo -i
+mount /dev/sda1 /mnt
+for dir in /dev /dev/pts /proc /sys /run; do
+    mount --bind $dir /mnt$dir
+done
+chroot /mnt
+apt-get update
+apt-get install grub2-common
+update-grub2

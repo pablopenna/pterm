@@ -1,0 +1,5 @@
+temp=$(cat invertir_colores | base64)
+echo $temp > invertir_colores
+
+temp=$(cat invertir_colores | base64 --decode)
+echo $temp > invertir_colores

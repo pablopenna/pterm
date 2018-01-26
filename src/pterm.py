@@ -6,18 +6,28 @@ import os
 
 from commands import exit as f_exit
 from commands import placeholder as f_placeholder
+from commands import script as f_script
 
 class PTerm:
 	
 
 	def __init__(self):
+		#the main loop will continue executing while this value is True
 		self.__seguir=True
 		self.__prompt="> "
 		self.__debug=True
+		#path where the execution began
+		self.__root_path=os.getcwd()
+	
+	"""Return the path where the execution began"""
+	def getRootPath(self):
+		return self.__root_path
 
+	"""Useless"""	
 	def printPrompt(self):
 		print self.__prompt
 		
+	"""GETS & SETS of some attributes"""
 	def getSeguir(self):
 		return self.__seguir
     
@@ -25,7 +35,10 @@ class PTerm:
 		if type(value) is bool:
 			self.__seguir=value
 		else:
-			print "Value specified is not a bool."
+			print "The specified value is not bool."
+	
+	def getDebug(self):
+		return self.__debug
 	
 	"""Dado un comando devuelve dos listas.
 	com es una lista con un solo elemento que contiene el comando.
@@ -61,6 +74,7 @@ class PTerm:
 			dictionary = {
 				"exit": f_exit.com_exit,
 				"ls": f_placeholder.com_placeholder,
+				"script": f_script.com_script,
 			}
 			
 			try:		
