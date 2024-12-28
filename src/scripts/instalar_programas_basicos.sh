@@ -57,11 +57,9 @@ fi
 if [ "$iBasic" -eq 1 ]; then
 echo "Installing Basic..."	
 #basic
-sudo apt-get install vim
+	sudo apt-get install neovim
 sudo apt-get install git
-sudo apt-get install indicator-cpufreq
 sudo apt-get install psensor
-sudo apt-get install caffeine
 echo "finished Basic!"
 fi
 
