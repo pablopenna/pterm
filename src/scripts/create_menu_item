@@ -209,7 +209,7 @@ if [ "$#" -eq 1 ]; then
 	echo "[Desktop Entry]
 Encoding=UTF-8
 Version=1.0
-name=$name
+Name=$name
 GenericName=$name
 Exec=\"$PWD/$name\" \"\"
 Terminal=false
