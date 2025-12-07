@@ -1,0 +1,8 @@
+:set ai
+:set ts=4
+:set tw=80
+:syntax on
+"Tab size used by commands like  >, < o =
+:set shiftwidth=4
+"Insert white spaced instead of the character '\t'
+"expandtab
