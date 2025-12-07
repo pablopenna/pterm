@@ -1,4 +1,6 @@
 alias l='ls -la'
 
 alias gs='git status'
-alias gl='git log --all --oneline'
+alias gd='git diff'
+alias gm='git commit -m'
+alias gl='git log --oneline --graph --all'
